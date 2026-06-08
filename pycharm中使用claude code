@@ -1,15 +1,24 @@
 # pycharm中的claude code接入deepseek的方法：
 
-第一步：
+第一步：在 PyCharm 底部 Terminal 里运行：claude --version  如果提示找不到 claude，先安装：npm install -g @anthropic-ai/claude-code
+第二步：在这个目录下C:\Users\你的用户名\.claude\新建settings.json，内容填
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
+    "ANTHROPIC_AUTH_TOKEN": "你的 DeepSeek API Key",
 
-第二步：
+    "ANTHROPIC_MODEL": "claude-opus-4-20250514",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-20250514",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-4-20250514",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-3-5-20241022",
 
-第三步：
+    "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-4-20250514",
+    "CLAUDE_CODE_EFFORT_LEVEL": "max"
+  }
+}
+注意：填入你自己的API KEY
 
-第四步：
+第三步：然后 完全关闭 PyCharm，重新打开 PyCharm，进入项目终端：claude
 
-第五步：
-
-第六步：
-
-第七步：
+第四步：在claude code命令行输入/model，优先选 Opus。
+这样就配置完成了
