@@ -9,3 +9,24 @@ await asyncio.wait_for(
     timeout=30
 )，传入的携程函数内部会封装成Task
 若传入future|Task的话，wait_for内部不会对它封装，传入啥返回啥
+
+
+# 定义一个模板函数类型，类型名是StreamSupportPolicy，只要符合参数是字符串的且返回值是bool的可以赋值给StreamSupportPolicy类型定义的变量。
+StreamSupportPolicy: TypeAlias = Callable[[str], bool]
+
+
+def _is_positive_int(value: str) -> bool:
+    try:
+        return int(value) > 0
+    except ValueError:
+        return False
+
+
+_STREAM_SUPPORT_POLICIES: dict[str, StreamSupportPolicy] = {
+    "telegram": _is_positive_int,
+}
+
+
+def _supports_stream_events(channel: str, chat_id: str) -> bool:
+    policy = _STREAM_SUPPORT_POLICIES.get(channel)
+    return policy(chat_id)
