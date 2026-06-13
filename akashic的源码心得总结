@@ -1,2 +1,11 @@
 Literal是 Python 的类型标注工具，来自 typing。 它表示：这个变量只能是某几个具体字面值。
+
 # asyncio
+asycncio.wait_for(协程|Task|Future,延迟时间)
+携程：
+常见使用方式1
+await asyncio.wait_for(
+    self._core_runner.process(...),
+    timeout=30
+)，传入的携程函数内部会封装成Task
+若传入future|Task的话，wait_for内部不会对它封装，传入啥返回啥
