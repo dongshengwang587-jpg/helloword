@@ -30,3 +30,7 @@ _STREAM_SUPPORT_POLICIES: dict[str, StreamSupportPolicy] = {
 def _supports_stream_events(channel: str, chat_id: str) -> bool:
     policy = _STREAM_SUPPORT_POLICIES.get(channel)
     return policy(chat_id)
+
+
+
+SyntaxError说明语法错误。
