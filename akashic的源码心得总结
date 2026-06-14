@@ -34,3 +34,13 @@ def _supports_stream_events(channel: str, chat_id: str) -> bool:
 
 
 SyntaxError说明语法错误。
+
+@dataclass
+class InitSummary:
+    created: list[Path] = field(default_factory=list)
+    overwritten: list[Path] = field(default_factory=list)
+    skipped: list[Path] = field(default_factory=list)
+    notes: list[str] = field(default_factory=list)
+
+注意：当你想达到重新创建对象就有新列表就使用上面的代码，若想多个对象共用一个列表就使用created: list[Path] = []。
+
