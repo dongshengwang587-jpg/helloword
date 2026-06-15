@@ -44,3 +44,5 @@ class InitSummary:
 
 注意：当你想达到重新创建对象就有新列表就使用上面的代码，若想多个对象共用一个列表就使用created: list[Path] = []。
 
+self.tasks: list[Awaitable[None]] = []  Awaitable代表列表里存储的是可以被await的对象，比如携程、Task、Future
+
