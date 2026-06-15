@@ -10,3 +10,17 @@
 ⑥复制健康观察模板文件
 
 ## python main.py cil
+
+作用：完成对现有服务器端连接
+
+客户端类型：界面式CLI、纯文本式CLI
+
+"""
+    后端服务 / agent server
+        ↑↓
+     socket
+        ↑↓
+    CLI / TUI 界面
+    socket是前端界面与后端服务连接的通道
+    """
+    为了实现
