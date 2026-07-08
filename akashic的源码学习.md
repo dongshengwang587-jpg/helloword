@@ -51,13 +51,20 @@ McpServerRegistry(类)：
                         _load_raw_configs(加载配置文件)
                         _save(保存配置文件)
 
-mcp/tools/base.py
+agent/tools/base.py
+
+方法：
+    normalize_tool_result(归一化工具结果)
 
 Tool(类)：
+        execute(执行工具，返回字符串结果)  抽象方法继承此类的类必须实现此方法
+        validate_params(校验参数，返回错误列表（空列表表示校验通过）)
+        _validate(递归校验值是否符合 schema，返回错误列表)
+        to_schema(转换为 OpenAI function calling 格式)
 
 
                         
-mcp/tools/register.py
+agent/tools/register.py
 
 ToolRegistry(类)：
                 set_context(设置当前会话上下文（channel、chat_id 等），供工具按需读取)
@@ -78,8 +85,16 @@ ToolRegistry(类)：
                 search(关键词搜索工具目录，返回匹配的工具信息列表)
                 
 
+agent/tool_runtime.py 
 
-
+方法：
+    prepare_toolset(将已有的工具列表转化为特定格式)
+    build_tool_schemas(创建发送给LLM Provider的工具声明)
+    build_tool_map(创建快速查找所需工具的字典)
+    tool_call_signature(用于检测agent是否陷入死循环)
+    format_tool_calls(工具格式化)
+    append_assistant_tool_calls(将工具调用列表添加到对话消息中)
+    append_tool_result(将工具调用回复添加到对话消息中)
 
 
 
