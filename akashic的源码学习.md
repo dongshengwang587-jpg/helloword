@@ -26,7 +26,7 @@
 
 ## 工具部分
 
-mcp/client.py文件
+agent/mcp/client.py文件
 
 McpClient(类)：
             属性：tool_infos
@@ -39,7 +39,7 @@ McpClient(类)：
                 _drain_stderr(后台读取 stderr，防止缓冲区阻塞)
                 _build_timeout_message(构建回复超时的消息的信息)
                 _new_id
-mcp/register.py
+agent/mcp/register.py
 
 McpServerRegistry(类)：
                     方法：
@@ -97,6 +97,22 @@ agent/tool_runtime.py
     append_tool_result(将工具调用回复添加到对话消息中)
 
 
+agent/tool_bundles.py
+    方法：
+        build_readonly_research_tools(根据参数返回工具包)
+
+agent/bootstrap/tools.py    
+
+CoreRuntime(类)：
+                方法：
+                    start()
+                    stop()
+                    
+方法：
+    build_registered_tools()
+    _build_loop_deps()
+    _consolidate_and_save()
+    build_core_runtime()
 
 
 
