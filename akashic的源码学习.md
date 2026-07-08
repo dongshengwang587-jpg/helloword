@@ -23,4 +23,17 @@
     CLI / TUI 界面
     socket是前端界面与后端服务连接的通道
     """
-    为了实现
+
+## 工具部分
+
+McpClient(类)：
+            属性：tool_infos
+            方法：
+                connect(启动子进程，完成握手，获取工具列表)
+                call(调用远端工具，返回结果字符串)
+                disconnect(终止子进程)
+                _send(发送消息)
+                _recv(接收消息)
+                _drain_stderr(后台读取 stderr，防止缓冲区阻塞)
+                _build_timeout_message(构建回复超时的消息的信息)
+                _new_id
