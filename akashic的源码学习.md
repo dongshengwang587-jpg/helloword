@@ -26,6 +26,8 @@
 
 ## 工具部分
 
+mcp/client.py文件
+
 McpClient(类)：
             属性：tool_infos
             方法：
@@ -37,3 +39,67 @@ McpClient(类)：
                 _drain_stderr(后台读取 stderr，防止缓冲区阻塞)
                 _build_timeout_message(构建回复超时的消息的信息)
                 _new_id
+mcp/register.py
+
+McpServerRegistry(类)：
+                    方法：
+                        load_and_connect_all(启动时读取持久化配置，重连所有 server)
+                        add(添加mcp server)
+                        remove(移除mcp server)
+                        list_servers(列出已注册的mcp server)
+                        _connect(连接mcp server并完成工具注册)
+                        _load_raw_configs(加载配置文件)
+                        _save(保存配置文件)
+
+mcp/tools/base.py
+
+Tool(类)：
+
+
+                        
+mcp/tools/register.py
+
+ToolRegistry(类)：
+                set_context(设置当前会话上下文（channel、chat_id 等），供工具按需读取)
+                get_context(获取当前会话上下文)
+                register(完成工具注册)
+                unregister(完成工具注销)
+                has_tool(列出已注册工具名字)
+                get_tool(获取指定名字的工具)
+                get_registered_names(返回当前已注册工具名集合)
+                get_schemas(返回 OpenAI function calling 格式的工具定义列表。names 为 None 时返回全量；否则只返回指定名称的工具)
+                get_always_on_names(返回标记为 always_on 的工具名称集合)
+                get_documents(返回所有已注册工具的索引文档列表)
+                get_deferred_names(返回所有 deferred 工具名，按来源分组)
+                execute(执行工具返回结果)
+                get_schemas_as_doc_results(将工具名列表转为与 search() 相同格式的结果列表)
+                get_mcp_server_names(返回当前已注册的所有 MCP server 名称)
+                get_tool_names_by_source(返回指定来源的所有工具名)
+                search(关键词搜索工具目录，返回匹配的工具信息列表)
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
