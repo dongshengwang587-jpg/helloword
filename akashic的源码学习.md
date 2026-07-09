@@ -114,23 +114,42 @@ CoreRuntime(类)：
     _consolidate_and_save()
     build_core_runtime()
 
+## 记忆部分
 
 memory2/retriever.py
 
 Retriever(类)：
-            retrieve(embed query → cosine search → 返回命中条目列表)
-            embed(仅做 embedding，不触发 vector_search)
-            retrieve_with_vec(复用已有 query_vec 做本地 vector_search，跳过 embedding 步骤)
-            _select_injection_sections(1. 筛选条目 2. 按段落准备格式化文本)
-            _select_for_injection(保留 _select_injection_sections返回的selected字段)
-            build_injection_block(次流程：筛选条目 → 分段格式化 → 应用字符预算)
+            方法：
+                retrieve(embed query → cosine search → 返回命中条目列表)
+                embed(仅做 embedding，不触发 vector_search)
+                retrieve_with_vec(复用已有 query_vec 做本地 vector_search，跳过 embedding 步骤)
+                _select_injection_sections(1. 筛选条目 2. 按段落准备格式化文本)
+                _select_for_injection(保留 _select_injection_sections返回的selected字段)
+                build_injection_block(次流程：筛选条目 → 分段格式化 → 应用字符预算)
             
             
 memory2/hyde_enhancer.py
 
 HyDEEnhancer(类)：
-                generate_hypothesis(生成假想记忆条目。失败/超时返回 None，调用方降级为原始检索)
-                    
+                方法：
+                    generate_hypothesis(生成假想记忆条目。失败/超时返回 None，调用方降级为原始检索)
+                    _build_default_prompt(构建默认提示词)--静态方法
+                    augment(双路检索并返回所有不同条目)
+                    _union_dedup(留 raw 全部结果（含原始分数），追加 hyde 中 raw 没有的条目)
+                
+                
+memory2/memorizer.py             
+
+Memorizer(类)：
+            方法：
+                save_item(直接保存,不做任何去重和冲突处理)
+                save_item_with_supersede(保存前先淘汰/合并旧条目)
+                save_from_consolidation(将对话历史（短期窗口）中值得长期保留的信息提取出来，持久化到长期记忆库的过程)
+                _merge_summary_text(对新旧摘要进行拼接)--静态方法
+                _pick_explicit_merge_target(挑选指定相似度的聚合摘要)--静态方法
+                merge_item(将更新后的摘要存入数据库)
+                
+            
 
 
 
