@@ -115,6 +115,22 @@ CoreRuntime(类)：
     build_core_runtime()
 
 
+memory2/retriever.py
+
+Retriever(类)：
+            retrieve(embed query → cosine search → 返回命中条目列表)
+            embed(仅做 embedding，不触发 vector_search)
+            retrieve_with_vec(复用已有 query_vec 做本地 vector_search，跳过 embedding 步骤)
+            _select_injection_sections(1. 筛选条目 2. 按段落准备格式化文本)
+            _select_for_injection(保留 _select_injection_sections返回的selected字段)
+            build_injection_block(次流程：筛选条目 → 分段格式化 → 应用字符预算)
+            
+            
+memory2/hyde_enhancer.py
+
+HyDEEnhancer(类)：
+                generate_hypothesis(生成假想记忆条目。失败/超时返回 None，调用方降级为原始检索)
+                    
 
 
 
