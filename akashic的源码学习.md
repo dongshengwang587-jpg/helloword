@@ -150,7 +150,17 @@ Memorizer(类)：
                 merge_item(将更新后的摘要存入数据库)
                 
             
+memory2/post_response_worker.py
 
+PostResponseMemoryWorker(类)：
+                            方法：
+                                _consume_budget(计算剩余token budget)--静态方法
+                                _preview_text(格式化文本到固定长度)--静态方法
+                                _collect_explicit_memorized(从 tool_chain 收集本轮 memorize tool 显式写入的 summary 和 DB id)
+                                _handle_invalidations(检测用户明确指出 agent 旧行为有误的情况，无需替代规则即直接 supersede 旧条目)
+                                _extract_invalidation_topics(从用户消息中提取被明确声明为有误/需废弃的 agent 行为主题)
+                                _check_invalidate(用户声明旧行为有误时，判断哪些旧条目应被 supersede（无需新规则替代）)
+                            
 
 
 
