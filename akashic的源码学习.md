@@ -163,7 +163,59 @@ PostResponseMemoryWorker(类)：
                             
 
 
+memory2/injection_planner.py
 
+
+
+
+memory2/store.py
+
+MemoryStore2(类)：
+                _migrate_existing_to_vec(启动时将 memory_items 中尚未同步到 vec_items 的 embedding 迁移过去)
+                _vec_insert(向 vec_items 插入一条向量（幂等：先删再插）。维度不匹配时静默跳过)
+                _vec_delete(从 vec_items 批量删除)
+                upsert_item(写入或强化一条记忆。返回 'new:id' 或 'reinforced:id)
+                upsert_consolidation_event(原子写入 consolidation event：同一 source_ref 最多写一次)
+                has_consolidation_source_ref(获取指定ref的压缩记忆)
+                 mark_superseded(将指定条目标记为已退休)
+                 mark_superseded_batch(批量将指定条目标记为已退休)
+                 get_items_by_ids()
+
+
+
+core/memory/port.py
+
+MemoryPort(Protocol)：
+                    read_long_term()
+                    read_profile()
+                    write_long_term()
+                    read_self()
+                    write_self()
+                    read_recent_context()
+                    write_recent_context()
+                    read_pending()
+                    append_pending()
+                    append_pending_once()
+                    snapshot_pending()
+                    commit_pending_snapshot()
+                    rollback_pending_snapshot()
+                    append_history()
+                    append_history_once()
+                    read_history()
+                    append_journal()
+                    get_memory_context()
+                    has_long_term_memory()
+                    retrieve_related()
+                    embed_query()
+                    retrieve_related_vec()
+                    build_injection_block()
+                    save_item()
+                    save_item_with_supersede()
+                    save_from_consolidation()
+                    reinforce_items_batch()
+                    keyword_match_procedures()
+                    
+                    
 
 
 
