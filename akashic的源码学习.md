@@ -253,7 +253,31 @@ DefaultMemoryPort(适配器)：
                             keyword_match_procedures()
                         
                         
-                    
+core/memory/engine.py 
+
+EngineProfile(str,Enum)---定义记忆引擎库的类
+
+MemoryCapability(str, Enum)---定义记忆引擎的能力的类
+
+MemoryCapability(str, Enum)---定义记忆引擎作用范围的类
+
+MemoryEngineDescriptor(类)---描述一个 Memory Engine
+
+MemoryIngestRequest(类)---记忆写入请求
+
+MemoryIngestResult(类)---记忆写入结果
+
+MemoryHit(类)---检索命中
+
+MemoryEngineRetrieveRequest(类)---记忆引擎检索请求
+
+MemoryEngineRetrieveResult(类)---记忆引擎检索结果
+
+MemoryEngine(Protocol)：
+                        ingest(原始输入写入)
+                        retrieve(记忆查询)
+                        remember(主动记忆写入)
+                        describe(获取记忆引擎描述)
                     
 
 
