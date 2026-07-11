@@ -280,7 +280,9 @@ MemoryEngine(Protocol)：
                         describe(获取记忆引擎描述)
                     
 
+RememberRequest(主动保存请求)
 
+RememberResult(主动保存结果)
 
 
 
