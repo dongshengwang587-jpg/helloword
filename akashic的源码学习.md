@@ -350,7 +350,20 @@ ToolCallCompleted()
 """
 BeforeDispatch
 
-感悟：
+
+bus/queue.py
+
+"""
+agent 与各 channel 之间的异步消息总线
+"""
+MessageBus(类)：
+            方法：
+                publish_inbound(将消息放到InBound消息队列中)
+                consume_inbound(阻塞直到InBound中有消息可消费)
+                publish_outbound(将大模型最后生成的消息放到OutBound消息队列中)
+                subscribe_outbound(订阅某 channel 的出站消息)
+                dispatch_outbound(后台任务：将出站消息分发给对应 channel 的订阅者)                
+感悟：该agent与channel的异步消息总线采用两个队列存放消息，而且在订阅某channel的出站消息中采用了可调用对象，这种在实际操作出站消息才确定函数的思想值得学习。
 亮点:
     mcp工具注册的过程解耦:①连接mcp服务器及通信由McpClient(类)实现②具体工具注册实现ToolRegistry(类)③McpServerRegistry(类)调用连接与注册功能完成工具注册
     mcp工具的添加等功能的作为工具注册到工具列表,实现了mcp工具的agent化调整.
