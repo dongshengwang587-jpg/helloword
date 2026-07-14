@@ -288,6 +288,28 @@ RememberResult(主动保存结果)
 
 
 
+bus/event_bus.py
+
+EventBus(类)：
+            方法：
+                on(按注册顺序保存 handler，语义由 emit / observe 调用点决定)
+                emit(依次执行干预链，handler 返回新事件时替换当前事件)
+                observe(依次执行观察者，单个观察者失败不打断主流程)
+                fanout(并发执行观察者；每个观察者自己记录异常，fanout 只汇总失败数量)
+                enqueue(后台队列只负责把事件交给 fanout，避免主回复等待后处理)
+                aclose(关闭事件总线)
+_handler_name(获取hander的名字)
+
+亮点:
+    mcp工具注册的过程解耦:①连接mcp服务器及通信由McpClient(类)实现②具体工具注册实现ToolRegistry(类)③McpServerRegistry(类)调用连接与注册功能完成工具注册
+    mcp工具的添加等功能的作为工具注册到工具列表,实现了mcp工具的agent化调整.
+    定义工具基类,这有如下几点好处:①在工具注册时无需考虑工具实现细节,直接注册就可以②会减少冗余的重复代码③增加新的通用行为会更高效④定义即审查代码字段
+    将远端mcp工具转换为本地工具,使用mcp_{server_name}__{tool_name}为工具名格式,避免与内置工具冲突
+
+
+
+
+
 
 
 
