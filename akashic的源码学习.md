@@ -301,6 +301,56 @@ EventBus(类)：
 _handler_name(获取hander的名字)
 感悟：emit可以更改event,而observe不可以更改event,而enqueue适合后台任务，比如：大模型及时回复消息，而写数据库等任务放到后台，具体执行是fanout.
 
+
+bus/events.py
+
+InboundMessage(从 channel 传入的消息)
+OutboundMessage(从agent 发出的消息)
+
+感悟：数据类与数据类的操作解耦
+
+bus/events_lifecycle.py
+
+"""
+触发时机: 一条用户消息刚进入系统时。此时还没有做任何处理。
+"""
+TurnStarted()
+
+"""
+触发时机: agent 完成所有的推理和工具调用后，生成最终回复时。此时回复内容已定，但可能还没持久化到存储。
+"""
+TurnCompleted()
+
+"""
+触发时机: agent 启用流式输出时，每次产生一小段文本就触发一次。channel adapter 订阅这个事件，把增量内容推送给前端/客户端（如打字机效果）
+"""
+StreamDeltaReady()
+
+"""
+触发时机: 在 agent 开始"思考"之前。此时已经完成了 skill 匹配和记忆检索
+"""
+BeforeReasoning()
+
+"""
+触发时机: 对话轮次的数据已经被写入持久化存储（数据库/日志）之后。这是一个"事后通知"事件，observer 可以拿去做审计、统计、异步清理等
+"""
+TurnCommitted()
+
+"""
+触发时机: ReAct 循环中的每个工具调用。ToolCallStarted 在调用前触发
+"""
+ToolCallStarted()
+"""
+触发时机: ReAct 循环中的每个工具调用。ToolCallCompleted 在调用返回后触发
+"""
+ToolCallCompleted()
+
+"""
+触发时机: 回复内容已生成完毕，即将通过 channel 发送给用户之前。
+"""
+BeforeDispatch
+
+感悟：
 亮点:
     mcp工具注册的过程解耦:①连接mcp服务器及通信由McpClient(类)实现②具体工具注册实现ToolRegistry(类)③McpServerRegistry(类)调用连接与注册功能完成工具注册
     mcp工具的添加等功能的作为工具注册到工具列表,实现了mcp工具的agent化调整.
