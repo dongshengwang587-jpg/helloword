@@ -292,13 +292,14 @@ bus/event_bus.py
 
 EventBus(类)：
             方法：
-                on(按注册顺序保存 handler，语义由 emit / observe 调用点决定)
+                on(按注册顺序保存 event及对应handler，语义由 emit / observe 调用点决定)
                 emit(依次执行干预链，handler 返回新事件时替换当前事件)
                 observe(依次执行观察者，单个观察者失败不打断主流程)
                 fanout(并发执行观察者；每个观察者自己记录异常，fanout 只汇总失败数量)
                 enqueue(后台队列只负责把事件交给 fanout，避免主回复等待后处理)
                 aclose(关闭事件总线)
 _handler_name(获取hander的名字)
+感悟：emit可以更改event,而observe不可以更改event,而enqueue适合后台任务，比如：大模型及时回复消息，而写数据库等任务放到后台，具体执行是fanout.
 
 亮点:
     mcp工具注册的过程解耦:①连接mcp服务器及通信由McpClient(类)实现②具体工具注册实现ToolRegistry(类)③McpServerRegistry(类)调用连接与注册功能完成工具注册
