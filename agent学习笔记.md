@@ -6,6 +6,37 @@
 
 ## 1. 适配器模式
 
+适配器模式解决的是接口不兼容的问题.
+
+如下所示，原来的支付接口为pay_money,而新的支付接口为pay，为了解决接口不兼容，引入适配器，将pay_money接口封装成pay接口。
+
+class OldPayment:
+
+    def pay_money(self, money):
+        print(f"支付 {money} 元")
+
+
+class PaymentAdapter:
+
+    def __init__(self, old_payment):
+        self.old_payment = old_payment
+
+
+    def pay(self, amount):
+
+        # 转换接口
+        self.old_payment.pay_money(amount)
+
+
+
+payment = PaymentAdapter(
+    OldPayment()
+)
+
+
+payment.pay(100)
+
+
 
 ## 2. 类间关系
 
