@@ -2,7 +2,7 @@
 
 - [1. 适配器模式](#1-适配器模式)
 - [2. 类间关系](#1-类间关系)
-- [3. mcp server与mcp client的通信](#1-mcp server与mcp client的通信)
+- [3. mcp server与mcp client的通信](#1-mcpserver与mcpclient的通信)
 
 ## 1. 适配器模式
 
