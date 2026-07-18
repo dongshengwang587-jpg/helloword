@@ -38,5 +38,42 @@ const msg: Message = {
 
 };
 
+# 声明合并
 
+声明合并在不直接改变源码的情况下，对源码的接口等做调整。
+
+例子如下：
+
+// sdk.ts
+export interface AppMessage {
+
+    type: string;
+
+}
+
+declare module "@earendil-works/pi-ai" {
+
+    interface AppMessage {
+
+        progress: number;
+
+        timestamp: number;
+
+    }
+
+}
+
+TypeScript自动认为：
+
+interface AppMessage {
+
+    type: string;
+
+    progress: number;
+
+    timestamp: number;
+
+}
+
+SDK无需修改。
 
