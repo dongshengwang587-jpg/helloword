@@ -3,7 +3,7 @@
 - [1. 适配器模式](#1-适配器模式)
 - [2. 类间关系](#1-类间关系)
 - [3. mcp server与mcp client的通信](#1-mcpserver与mcpclient的通信)
-
+- [4. 提示词工程](#1-提示词工程)
 
 
 
@@ -83,5 +83,9 @@ payment.pay(100)
 1.mcp server与mcp client在不同进程时，使用stdio方式通信也就是进程间通信。
 
 2.mcp server与mcp client在不同机器时使用http进行通信，优先选流式http。
+
+# 4. 提示词工程
+
+大模型对promot开头和结尾的内容更敏感
 
 
