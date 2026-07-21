@@ -1,10 +1,10 @@
 ## 目录
 
 - [1. 适配器模式](#1-适配器模式)
-- [2. 类间关系](#1-类间关系)
-- [3. mcp server与mcp client的通信](#1-mcpserver与mcpclient的通信)
-- [4. 提示词工程](#1-提示词工程)
-- [5. RAG](#1-RAG).
+- [2. 类间关系](#2-类间关系)
+- [3. mcp server与mcp client的通信](#3-mcpserver与mcpclient的通信)
+- [4. 提示词工程](#4-提示词工程)
+- [5. RAG](#5-RAG).
 
 ## 1. 适配器模式
 
